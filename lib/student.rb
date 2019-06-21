@@ -54,6 +54,10 @@ class Student
   #   self.all.select{|student| student.grade.to_i < 12}
   # end
 
+  def self.first_X_students_in_grade_10
+
+  end
+
   def self.find_by_name(name)
     sql = <<-SQL
       SELECT *
