@@ -23,86 +23,86 @@ class Student
     end
   end
 
-  def self.all_students_in_grade_9
-    sql = <<-SQL
-      SELECT *
-      FROM students
-      WHERE grade = 9
-    SQL
-    DB[:conn].execute(sql).map do |row|
-      self.new_from_db(row)
-    end
-  end
-
   # def self.all_students_in_grade_9
-  #   self.all.select{|student| student.grade.to_i == 9}
+  #   sql = <<-SQL
+  #     SELECT *
+  #     FROM students
+  #     WHERE grade = 9
+  #   SQL
+  #   DB[:conn].execute(sql).map do |row|
+  #     self.new_from_db(row)
+  #   end
   # end
 
-  def self.students_below_12th_grade
-    sql = <<-SQL
-      SELECT *
-      FROM students
-      WHERE grade < 12
-    SQL
-
-    DB[:conn].execute(sql).map do |row|
-      self.new_from_db(row)
-    end
+  def self.all_students_in_grade_9
+    self.all.select{|student| student.grade.to_i == 9}
   end
 
   # def self.students_below_12th_grade
-  #   self.all.select{|student| student.grade.to_i < 12}
+  #   sql = <<-SQL
+  #     SELECT *
+  #     FROM students
+  #     WHERE grade < 12
+  #   SQL
+  #
+  #   DB[:conn].execute(sql).map do |row|
+  #     self.new_from_db(row)
+  #   end
   # end
 
-  def self.first_X_students_in_grade_10(x)
-    sql = <<-SQL
-      SELECT *
-      FROM students
-      WHERE grade = 10
-      LIMIT ?
-    SQL
-
-    DB[:conn].execute(sql, x).map do |row|
-      self.new_from_db(row)
-    end
+  def self.students_below_12th_grade
+    self.all.select{|student| student.grade.to_i < 12}
   end
 
   # def self.first_X_students_in_grade_10(x)
-  #   self.all.select.with_index(1){|student, i| student.grade.to_i == 10 && i <= x}
+  #   sql = <<-SQL
+  #     SELECT *
+  #     FROM students
+  #     WHERE grade = 10
+  #     LIMIT ?
+  #   SQL
+  #
+  #   DB[:conn].execute(sql, x).map do |row|
+  #     self.new_from_db(row)
+  #   end
   # end
 
-  def self.first_student_in_grade_10
-    sql = <<-SQL
-      SELECT *
-      FROM students
-      WHERE grade = 10
-      LIMIT 1
-    SQL
-
-    DB[:conn].execute(sql).map do |row|
-      self.new_from_db(row)
-    end.first
+  def self.first_X_students_in_grade_10(x)
+    self.all.select.with_index(1){|student, i| student.grade.to_i == 10 && i <= x}
   end
 
   # def self.first_student_in_grade_10
-  #   self.all.detect{|student| student.grade.to_i == 10}
+  #   sql = <<-SQL
+  #     SELECT *
+  #     FROM students
+  #     WHERE grade = 10
+  #     LIMIT 1
+  #   SQL
+  #
+  #   DB[:conn].execute(sql).map do |row|
+  #     self.new_from_db(row)
+  #   end.first
   # end
 
-  def self.all_students_in_grade_X(grade)
-    sql = <<-SQL
-      SELECT *
-      FROM students
-      WHERE grade = ?
-    SQL
-
-    DB[:conn].execute(sql, grade).map do |row|
-      self.new_from_db(row)
-    end
+  def self.first_student_in_grade_10
+    self.all.detect{|student| student.grade.to_i == 10}
   end
 
   # def self.all_students_in_grade_X(grade)
-  #   self.all.select{|student| student.grade.to_i == grade}
+  #   sql = <<-SQL
+  #     SELECT *
+  #     FROM students
+  #     WHERE grade = ?
+  #   SQL
+  #
+  #   DB[:conn].execute(sql, grade).map do |row|
+  #     self.new_from_db(row)
+  #   end
   # end
+
+  def self.all_students_in_grade_X(grade)
+    self.all.select{|student| student.grade.to_i == grade}
+  end
 
   def self.find_by_name(name)
     sql = <<-SQL
