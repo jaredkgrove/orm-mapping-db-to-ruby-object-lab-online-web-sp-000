@@ -71,6 +71,10 @@ class Student
   #   self.all.select.with_index(1){|student, i| student.grade.to_i == 10 && i <= x}
   # end
 
+  def self.first_student_in_grade_10
+
+  end
+
   def self.find_by_name(name)
     sql = <<-SQL
       SELECT *
