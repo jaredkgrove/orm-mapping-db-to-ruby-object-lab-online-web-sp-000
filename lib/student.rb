@@ -27,7 +27,7 @@ class Student
     sql = <<-SQL
       SELECT *
       FROM students
-      WHERE grade = '9th'
+      WHERE grade = ?
     SQL
     binding.pry
     DB[:conn].execute(sql, 9).map do |row|
