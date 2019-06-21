@@ -100,9 +100,9 @@ class Student
     end.first
   end
 
-  def self.all_students_in_grade_X(grade)
-    self.all.select{|student| student.grade.to_i == grade}
-  end
+  # def self.all_students_in_grade_X(grade)
+  #   self.all.select{|student| student.grade.to_i == grade}
+  # end
 
   def self.find_by_name(name)
     sql = <<-SQL
