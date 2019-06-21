@@ -85,7 +85,7 @@ class Student
   end
 
   def self.first_student_in_grade_10
-    self.all.detect{|student, i| student.grade.to_i == 10 && i <= x}
+    self.all.detect{|student| student.grade.to_i == 10 && i <= x}
   end
 
   def self.find_by_name(name)
